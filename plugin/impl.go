@@ -34,6 +34,7 @@ type Settings struct {
 	Note                 string
 	Overwrite            bool
 	GenerateReleaseNotes bool
+	Tag                  string
 
 	baseURL   *url.URL
 	uploadURL *url.URL
@@ -140,7 +141,12 @@ func (p *Plugin) Execute() error {
 		Context:              p.network.Context,
 		Owner:                p.pipeline.Repo.Owner,
 		Repo:                 p.pipeline.Repo.Name,
-		Tag:                  strings.TrimPrefix(p.pipeline.Commit.Ref, "refs/tags/"),
+		Tag: func() string {
+			if p.settings.Tag != "" {
+				return p.settings.Tag
+			}
+			return strings.TrimPrefix(p.pipeline.Commit.Ref, "refs/tags/")
+		}(),
 		Draft:                p.settings.Draft,
 		Prerelease:           p.settings.Prerelease,
 		FileExists:           p.settings.FileExists,

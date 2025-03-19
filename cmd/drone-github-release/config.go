@@ -38,6 +38,13 @@ func settingsFlags(settings *plugin.Settings) []cli.Flag {
 			EnvVars:     []string{"PLUGIN_FILE_EXISTS", "GITHUB_RELEASE_FILE_EXISTS"},
 			Destination: &settings.FileExists,
 		},
+		&cli.StringFlag{
+			Name:        "tag",
+			Value:       "",
+			Usage:       "tag name",
+			EnvVars:     []string{"PLUGIN_TAG", "GITHUB_RELEASE_TAG"},
+			Destination: &settings.Tag,
+		},
 		&cli.StringSliceFlag{
 			Name:        "checksum",
 			Usage:       "generate specific checksums",

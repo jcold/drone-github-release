@@ -31,7 +31,7 @@ Build the Docker image with the following command:
 docker build \
   --label org.label-schema.build-date=$(date -u +"%Y-%m-%dT%H:%M:%SZ") \
   --label org.label-schema.vcs-ref=$(git rev-parse --short HEAD) \
-  --file docker/Dockerfile.linux.amd64 --tag plugins/github-release .
+  --file docker/Dockerfile.linux.amd64 --tag plugins/github-release:25031500 .
 ```
 
 ## Usage

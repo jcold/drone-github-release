@@ -2,3 +2,4 @@
 /drone-github-release*
 
 coverage.out
+.DS_Store
